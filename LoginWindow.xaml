@@ -23,7 +23,7 @@
 
             <Grid>
 
-                <!-- ❌ FIXED -->
+                <!-- Close -->
                 <Button Content="✕"
                         Width="35"
                         Height="35"
@@ -32,16 +32,16 @@
                         Margin="0,10,10,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="Close_Click" Panel.ZIndex="2"/>
+                        Click="Close_Click"
+                        Panel.ZIndex="2"/>
 
                 <Grid>
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="350"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- LEFT -->
+                    <!-- LEFT PANEL -->
                     <Border x:Name="LeftPanel"
                             Grid.Column="0"
                             CornerRadius="15,0,0,15">
@@ -63,116 +63,254 @@
 
                             <TextBlock x:Name="txtTitle"
                                        Text="Hello, Welcome !"
-                                       TextAlignment="Center"
                                        FontSize="35"
                                        Foreground="White"
-                                       FontWeight="Bold"/>
+                                       FontWeight="Bold"
+                                       TextAlignment="Center"/>
 
                             <TextBlock x:Name="txtDesc"
                                        Text="Don't have an account ?"
-                                       TextAlignment="Center"
-                                       FontSize="14"
+                                       Margin="0,10,0,20"
                                        Foreground="White"
-                                       Margin="0,10,0,20"/>
+                                       TextAlignment="Center"/>
 
                             <Button Content="Register"
-                                    x:Name="btnSwitch"
-                                    Width="150"
-                                    Height="47"
-                                    Click="Switch_Click"
-                                    Background="Transparent"
-                                    BorderBrush="White"
-                                    BorderThickness="2"
-                                    Foreground="White"
-                                    Cursor="Hand" FontWeight="Bold" FontSize="16">              
+                                x:Name="btnSwitch"
+                                Width="150"
+                                Height="50"
+                                Click="Switch_Click"
+                                Background="Transparent"
+                                BorderBrush="White"
+                                BorderThickness="2"
+                                Foreground="White"
+                                Cursor="Hand" FontWeight="Bold" FontSize="16">
 
                                 <Button.RenderTransform>
-                                        <ScaleTransform x:Name="btnScale" ScaleX="1" ScaleY="1"/>
-                                    </Button.RenderTransform>
+                                    <ScaleTransform x:Name="btnScale" ScaleX="1" ScaleY="1"/>
+                                </Button.RenderTransform>
 
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
                                         <Border x:Name="bd"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="20"
-                                            Padding="5">    
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="20"
+                                                Padding="5">
 
                                             <ContentPresenter HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"/>
-                                            </Border>
+                                                                VerticalAlignment="Center"/>
+                                        </Border>
 
-                                            <ControlTemplate.Triggers>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="bd"
+                                                        Property="Background"
+                                                        Value="#33FFFFFF"/>
+                                            </Trigger>
 
-                                                <!-- Hover -->
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="bd"
-                                                    Property="Background"
-                                                    Value="#33FFFFFF"/>
-                                                </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="bd"
+                                                        Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
 
-                                                <!-- Click (nhấn xuống) -->
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="bd"
-                                                            Property="RenderTransform">
-                                                        <Setter.Value>
-                                                            <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Trigger>
-
-                                                <!-- Disable -->
-                                                <Trigger Property="IsEnabled" Value="False">
-                                                    <Setter TargetName="bd"
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter TargetName="bd"
                                                         Property="Opacity"
                                                         Value="0.5"/>
-                                                </Trigger>
-
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Button.Template>
-
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
                             </Button>
-                        </StackPanel>
 
+                        </StackPanel>
                     </Border>
 
-                    <!-- RIGHT -->
+                    <!-- RIGHT PANEL -->
                     <Grid x:Name="RightPanel"
                           Grid.Column="1"
-                          Margin="40">
+                          Margin="40,37,40,25">
 
                         <Grid.RenderTransform>
                             <TranslateTransform x:Name="rightTransform"/>
                         </Grid.RenderTransform>
 
-                        <StackPanel VerticalAlignment="Center">
+                        <StackPanel x:Name="MainFormStack"
+                                    VerticalAlignment="Center">
 
+                            <!-- Title -->
                             <TextBlock x:Name="txtFormTitle"
                                        Text="Login"
-                                       FontSize="35"
+                                       FontSize="32"
                                        FontWeight="Bold"
-                                       Foreground="#0EA5A4"
                                        HorizontalAlignment="Center"
-                                       Margin="0,0,0,20"/>
+                                       Margin="0,0,0,25"/>
 
-                            <TextBox Height="35" Margin="0,0,0,18" Text="Email"/>
-                            <PasswordBox Height="35" Margin="0,0,0,20"/>
+                            <!-- USERNAME -->
+                            <Grid x:Name="gridUsername" Margin="0,0,0,15">
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
 
-                            <Button Content="Submit"
-                                    Height="40"
-                                    Background="#14B8A6"
-                                    Foreground="White"/>
+                                        <TextBox x:Name="txtUsername"
+                                                 BorderThickness="0"
+                                                 Background="Transparent"
+                                                 VerticalContentAlignment="Center"
+                                                 TextChanged="txtUsername_TextChanged"/>
+
+                                        <TextBlock x:Name="phUsername"
+                                                   Text="Username"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="👤"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- REGISTER FIELD -->
+                            <Grid x:Name="gridRegisterUsername"
+                                  Margin="0,0,0,15"
+                                  Visibility="Collapsed">
+
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox x:Name="txtRegisterUsername"
+                                                 BorderThickness="0"
+                                                 Background="Transparent"
+                                                 VerticalContentAlignment="Center"
+                                                 TextChanged="txtRegisterUsername_TextChanged"/>
+
+                                        <TextBlock x:Name="phRegisterUsername"
+                                                   Text="Email"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="✉️"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- PASSWORD -->
+                            <Grid x:Name="gridPassword" Margin="0,0,0,10">
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PasswordBox x:Name="txtPassword"
+                                                     BorderThickness="0"
+                                                     Background="Transparent"
+                                                     VerticalContentAlignment="Center"
+                                                     PasswordChanged="txtPassword_PasswordChanged"/>
+
+                                        <TextBlock x:Name="phPassword"
+                                                   Text="Password"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="🔒"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- Forgot -->
+                            <TextBlock x:Name="txtForgot"
+                                       Text="Forgot Password?"
+                                       Foreground="Gray"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,0,20"
+                                       Cursor="Hand"/>
+
+                            <!-- Login button -->
+                            <Button x:Name="btnLogin" 
+                                    Click="btnLogin_Click"
+                                    Content="Login"
+                                    Height="45"
+                                    Background="#5B4BFF"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    BorderThickness="0"
+                                    Margin="0,0,0,20"/>
+
+                            <!-- OR -->
+                            <TextBlock x:Name="txtOrSocial"
+                                       Text="or login with social platforms"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Gray"
+                                       Margin="0,0,0,15"/>
+
+                            <!-- Social -->
+                            <StackPanel x:Name="panelSocial"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,0,5">
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+                                    <Image Source="/Images/google.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+                                    <Image Source="/Images/facebook.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+                                    <Image Source="/Images/github.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+                                    <Image Source="/Images/linkedin.png" Width="20" Height="20"/>
+                                </Button>
+
+                            </StackPanel>
+
                         </StackPanel>
-
                     </Grid>
 
                 </Grid>
-
             </Grid>
-
         </Border>
-
     </Grid>
 </Window>
