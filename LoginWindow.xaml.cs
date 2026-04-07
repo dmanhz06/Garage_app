@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Media.Animation;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace test2
 {
@@ -22,6 +24,51 @@ namespace test2
             public string Username { get; set; }
             public string Password { get; set; }
             public string Email { get; set; }
+        }
+
+        private void ClearForm()
+        {
+            // Xóa text
+            txtUsername.Text = "";
+            txtRegisterUsername.Text = "";
+            txtPassword.Password = "";
+
+            // Reset placeholder
+            phUsername.Visibility = Visibility.Visible;
+            phRegisterUsername.Visibility = Visibility.Visible;
+            phPassword.Visibility = Visibility.Visible;
+        }
+
+        private async void ShowToast(string message, bool isSuccess)
+        {
+            txtToast.Text = message;
+
+            if (isSuccess)
+            {
+                toast.Background = Brushes.SeaGreen;
+                txtToastIcon.Text = "✔";
+            }
+            else
+            {
+                toast.Background = Brushes.IndianRed;
+                txtToastIcon.Text = "❌";
+            }
+
+            // fade + slide in
+            DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(300));
+            DoubleAnimation slideIn = new DoubleAnimation(-30, 0, TimeSpan.FromMilliseconds(300));
+
+            toast.BeginAnimation(OpacityProperty, fadeIn);
+            toastTransform.BeginAnimation(System.Windows.Media.TranslateTransform.YProperty, slideIn);
+
+            await Task.Delay(1500);
+
+            // fade + slide out
+            DoubleAnimation fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(300));
+            DoubleAnimation slideOut = new DoubleAnimation(0, -30, TimeSpan.FromMilliseconds(300));
+
+            toast.BeginAnimation(OpacityProperty, fadeOut);
+            toastTransform.BeginAnimation(System.Windows.Media.TranslateTransform.YProperty, slideOut);
         }
 
         private bool IsValidEmail(string email)
@@ -122,6 +169,8 @@ namespace test2
             rightTransform.BeginAnimation(System.Windows.Media.TranslateTransform.XProperty, rightAnim);
 
             isSwapped = !isSwapped;
+            ClearForm();
+            txtUsername.Focus();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -131,7 +180,7 @@ namespace test2
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                ShowToast("Vui lòng điền đầy đủ thông tin !", false);
                 return;
             }
 
@@ -142,13 +191,13 @@ namespace test2
 
                 if (string.IsNullOrEmpty(email))
                 {
-                    MessageBox.Show("Vui lòng nhập email!");
+                    ShowToast("Vui lòng nhập email!", false);
                     return;
                 }
 
                 if (!IsValidEmail(email))
                 {
-                    MessageBox.Show("Email không hợp lệ!");
+                    ShowToast("Email không hợp lệ!", false);
                     return;
                 }
 
@@ -157,7 +206,7 @@ namespace test2
 
                 if (existingUser != null)
                 {
-                    MessageBox.Show("Tài khoản đã tồn tại!");
+                    ShowToast("Tài khoản đã tồn tại!", false);
                     return;
                 }
 
@@ -169,7 +218,7 @@ namespace test2
                     Email = email
                 });
 
-                MessageBox.Show("Đăng ký thành công!");
+                ShowToast("Đăng ký thành công!", true);
 
                 // quay về login
                 Switch_Click(null, null);
@@ -181,19 +230,27 @@ namespace test2
 
                 if (user != null)
                 {
-                    MessageBox.Show("Đăng nhập thành công!");
+                    ShowToast("Đăng nhập thành công!", true);
 
-                    MainWindow main = new MainWindow();
-                    main.Show();
+                    Task.Delay(1000).ContinueWith(_ =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            MainWindow main = new MainWindow();
+                            main.Show();
+                            this.Close();
+                        });
+                    });
 
-                    this.Close();
+
                 }
                 else
                 {
-                    MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                    ShowToast("Sai tài khoản hoặc mật khẩu!", false);
                 }
             }
         }
+
 
         private void txtUsername_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -208,6 +265,7 @@ namespace test2
                 ? Visibility.Visible
                 : Visibility.Hidden;
         }
+
 
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {

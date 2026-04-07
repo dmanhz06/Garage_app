@@ -8,7 +8,6 @@
         Background="#0F3A52">
 
     <Grid>
-
         <Grid.Background>
             <ImageBrush ImageSource="/hinhanh/background_lg.gif"
                         Stretch="UniformToFill"/>
@@ -32,8 +31,7 @@
                         Margin="0,10,10,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="Close_Click"
-                        Panel.ZIndex="2"/>
+                        Click="Close_Click" Panel.ZIndex="2"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -74,54 +72,41 @@
                                        Foreground="White"
                                        TextAlignment="Center"/>
 
-                            <Button Content="Register"
-                                x:Name="btnSwitch"
-                                Width="150"
-                                Height="50"
-                                Click="Switch_Click"
-                                Background="Transparent"
-                                BorderBrush="White"
-                                BorderThickness="2"
-                                Foreground="White"
-                                Cursor="Hand" FontWeight="Bold" FontSize="16">
-
-                                <Button.RenderTransform>
-                                    <ScaleTransform x:Name="btnScale" ScaleX="1" ScaleY="1"/>
-                                </Button.RenderTransform>
+                            <Button x:Name="btnSwitch"
+                                    Content="Register"
+                                    Width="150"
+                                    Height="50"
+                                    Click="Switch_Click"
+                                    Background="Transparent"
+                                    BorderBrush="White"
+                                    BorderThickness="2"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="16"
+                                    Cursor="Hand">
 
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Border x:Name="bd"
+                                                CornerRadius="20"
                                                 Background="{TemplateBinding Background}"
                                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}"
-                                                CornerRadius="20"
-                                                Padding="5">
-
+                                                BorderThickness="{TemplateBinding BorderThickness}">
                                             <ContentPresenter HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"/>
+                                                              VerticalAlignment="Center"/>
                                         </Border>
 
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="bd"
-                                                        Property="Background"
-                                                        Value="#33FFFFFF"/>
+                                                <Setter TargetName="bd" Property="Background" Value="#33FFFFFF"/>
                                             </Trigger>
 
                                             <Trigger Property="IsPressed" Value="True">
-                                                <Setter TargetName="bd"
-                                                        Property="RenderTransform">
+                                                <Setter TargetName="bd" Property="RenderTransform">
                                                     <Setter.Value>
                                                         <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
                                                     </Setter.Value>
                                                 </Setter>
-                                            </Trigger>
-
-                                            <Trigger Property="IsEnabled" Value="False">
-                                                <Setter TargetName="bd"
-                                                        Property="Opacity"
-                                                        Value="0.5"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -249,14 +234,13 @@
                                        Text="Forgot Password?"
                                        Foreground="Gray"
                                        HorizontalAlignment="Right"
-                                       Margin="0,0,0,20"
-                                       Cursor="Hand"/>
+                                       Margin="0,0,0,20"/>
 
                             <!-- Login button -->
-                            <Button x:Name="btnLogin" 
-                                    Click="btnLogin_Click"
+                            <Button x:Name="btnLogin"
                                     Content="Login"
                                     Height="45"
+                                    Click="btnLogin_Click"
                                     Background="#5B4BFF"
                                     Foreground="White"
                                     FontWeight="Bold"
@@ -278,29 +262,25 @@
 
                                 <Button Width="45" Height="45" Margin="5"
                                         Background="White"
-                                        BorderBrush="#E5E7EB"
-                                        BorderThickness="1">
+                                        BorderBrush="#E5E7EB">
                                     <Image Source="/Images/google.png" Width="20" Height="20"/>
                                 </Button>
 
                                 <Button Width="45" Height="45" Margin="5"
                                         Background="White"
-                                        BorderBrush="#E5E7EB"
-                                        BorderThickness="1">
+                                        BorderBrush="#E5E7EB">
                                     <Image Source="/Images/facebook.png" Width="20" Height="20"/>
                                 </Button>
 
                                 <Button Width="45" Height="45" Margin="5"
                                         Background="White"
-                                        BorderBrush="#E5E7EB"
-                                        BorderThickness="1">
+                                        BorderBrush="#E5E7EB">
                                     <Image Source="/Images/github.png" Width="20" Height="20"/>
                                 </Button>
 
                                 <Button Width="45" Height="45" Margin="5"
                                         Background="White"
-                                        BorderBrush="#E5E7EB"
-                                        BorderThickness="1">
+                                        BorderBrush="#E5E7EB">
                                     <Image Source="/Images/linkedin.png" Width="20" Height="20"/>
                                 </Button>
 
@@ -312,5 +292,39 @@
                 </Grid>
             </Grid>
         </Border>
+        <!-- TOAST XỊN -->
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Margin="0,20,0,0"
+              IsHitTestVisible="False">
+
+            <Border x:Name="toast"
+            Background="#333"
+            CornerRadius="12"
+            Padding="14,8"
+            Opacity="0"
+            RenderTransformOrigin="0.5,0">
+
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="toastTransform" Y="-30"/>
+                </Border.RenderTransform>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                    <!-- ICON -->
+                    <TextBlock x:Name="txtToastIcon"
+                       Text="✔"
+                       FontSize="16"
+                       Margin="0,0,8,0"
+                       Foreground="White"/>
+
+                    <!-- TEXT -->
+                    <TextBlock x:Name="txtToast"
+                       Foreground="White"
+                       FontSize="14"
+                       VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
