@@ -61,6 +61,20 @@ namespace test2
             isSwapped = !isSwapped;
         }
 
+        private void txtUsername_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            phUsername.Visibility = string.IsNullOrEmpty(txtUsername.Text)
+                ? Visibility.Visible
+                : Visibility.Hidden;
+        }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            phPassword.Visibility = string.IsNullOrEmpty(txtPassword.Password)
+                ? Visibility.Visible
+                : Visibility.Hidden;
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
