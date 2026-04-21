@@ -119,6 +119,7 @@ namespace test2
                 gridUsername.Margin = new Thickness(0, 0, 0, 10);
                 gridRegisterUsername.Margin = new Thickness(0, 0, 0, 10);
                 gridPassword.Margin = new Thickness(0, 0, 0, 5);
+                btnLogin.Margin = new Thickness(0, 5, 0, 15);
                 txtFormTitle.FontSize = 26;
                 txtUsername.FontSize = 13;
                 txtRegisterUsername.FontSize = 13;
@@ -156,6 +157,7 @@ namespace test2
                 txtFormTitle.FontSize = 32;
                 txtUsername.FontSize = 14;
                 txtPassword.FontSize = 14;
+                btnLogin.Margin = new Thickness(0, 0, 0, 20);
 
                 // 👇 TRẢ LẠI SOCIAL
                 txtOrSocial.Margin = new Thickness(0, 0, 0, 15);
