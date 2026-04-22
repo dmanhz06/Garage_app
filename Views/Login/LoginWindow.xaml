@@ -1,0 +1,331 @@
+﻿<Window x:Class="test2.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login"
+        Height="600"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="#0F3A52">
+
+    <Grid>
+        <Grid.Background>
+            <!-- Use an image that is included as a Resource in the project to avoid missing-resource exceptions -->
+            <ImageBrush ImageSource="/Images/background.png"
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Border Width="750"
+                Height="420"
+                CornerRadius="15"
+                Background="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <Grid>
+
+                <!-- Close -->
+                <Button Content="✕"
+                        Width="35"
+                        Height="35"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,10,10,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="Close_Click" Panel.ZIndex="2"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LEFT PANEL -->
+                    <Border x:Name="LeftPanel"
+                            Grid.Column="0"
+                            CornerRadius="15,0,0,15">
+
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="leftTransform"/>
+                        </Border.RenderTransform>
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#0EA5A4" Offset="0"/>
+                                <GradientStop Color="#4F46E5" Offset="0.5"/>
+                                <GradientStop Color="#9333EA" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <StackPanel VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+
+                            <TextBlock x:Name="txtTitle"
+                                       Text="Hello, Welcome !"
+                                       FontSize="35"
+                                       Foreground="White"
+                                       FontWeight="Bold"
+                                       TextAlignment="Center"/>
+
+                            <TextBlock x:Name="txtDesc"
+                                       Text="Don't have an account ?"
+                                       Margin="0,10,0,20"
+                                       Foreground="White"
+                                       TextAlignment="Center"/>
+
+                            <Button x:Name="btnSwitch"
+                                    Content="Register"
+                                    Width="150"
+                                    Height="50"
+                                    Click="Switch_Click"
+                                    Background="Transparent"
+                                    BorderBrush="White"
+                                    BorderThickness="2"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="16"
+                                    Cursor="Hand">
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="bd"
+                                                CornerRadius="20"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="bd" Property="Background" Value="#33FFFFFF"/>
+                                            </Trigger>
+
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="bd" Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+
+                    <!-- RIGHT PANEL -->
+                    <Grid x:Name="RightPanel"
+                          Grid.Column="1"
+                          Margin="40,37,40,25">
+
+                        <Grid.RenderTransform>
+                            <TranslateTransform x:Name="rightTransform"/>
+                        </Grid.RenderTransform>
+
+                        <StackPanel x:Name="MainFormStack"
+                                    VerticalAlignment="Center">
+
+                            <!-- Title -->
+                            <TextBlock x:Name="txtFormTitle"
+                                       Text="Login"
+                                       FontSize="32"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,25"/>
+
+                            <!-- USERNAME -->
+                            <Grid x:Name="gridUsername" Margin="0,0,0,15">
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox x:Name="txtUsername"
+                                                 BorderThickness="0"
+                                                 Background="Transparent"
+                                                 VerticalContentAlignment="Center"
+                                                 TextChanged="txtUsername_TextChanged"/>
+
+                                        <TextBlock x:Name="phUsername"
+                                                   Text="Username"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="👤"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- REGISTER FIELD -->
+                            <Grid x:Name="gridRegisterUsername"
+                                  Margin="0,0,0,15"
+                                  Visibility="Collapsed">
+
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox x:Name="txtRegisterUsername"
+                                                 BorderThickness="0"
+                                                 Background="Transparent"
+                                                 VerticalContentAlignment="Center"
+                                                 TextChanged="txtRegisterUsername_TextChanged"/>
+
+                                        <TextBlock x:Name="phRegisterUsername"
+                                                   Text="Email"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="✉️"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- PASSWORD -->
+                            <Grid x:Name="gridPassword" Margin="0,0,0,10">
+                                <Border CornerRadius="8" Background="#F1F5F9">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <PasswordBox x:Name="txtPassword"
+                                                     BorderThickness="0"
+                                                     Background="Transparent"
+                                                     VerticalContentAlignment="Center"
+                                                     PasswordChanged="txtPassword_PasswordChanged"/>
+
+                                        <TextBlock x:Name="phPassword"
+                                                   Text="Password"
+                                                   Foreground="Gray"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"/>
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text="🔒"
+                                                   FontSize="16"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- Forgot -->
+                            <TextBlock x:Name="txtForgot"
+                                       Text="Forgot Password?"
+                                       Foreground="Gray"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,0,20"/>
+
+                            <!-- Login button -->
+                            <Button x:Name="btnLogin"
+                                    Content="Login"
+                                    Height="45"
+                                    Click="btnLogin_Click"
+                                    Background="#5B4BFF"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    BorderThickness="0"
+                                    Margin="0,0,0,20"/>
+
+                            <!-- OR -->
+                            <TextBlock x:Name="txtOrSocial"
+                                       Text="or login with social platforms"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Gray"
+                                       Margin="0,0,0,15"/>
+
+                            <!-- Social -->
+                            <StackPanel x:Name="panelSocial"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,0,5">
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB">
+                                    <Image Source="/Images/google.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB">
+                                    <Image Source="/Images/facebook.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB">
+                                    <Image Source="/Images/github.png" Width="20" Height="20"/>
+                                </Button>
+
+                                <Button Width="45" Height="45" Margin="5"
+                                        Background="White"
+                                        BorderBrush="#E5E7EB">
+                                    <Image Source="/Images/linkedin.png" Width="20" Height="20"/>
+                                </Button>
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Border>
+        <!-- TOAST XỊN -->
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Margin="0,20,0,0"
+              IsHitTestVisible="False">
+
+            <Border x:Name="toast"
+            Background="#333"
+            CornerRadius="12"
+            Padding="14,8"
+            Opacity="0"
+            RenderTransformOrigin="0.5,0">
+
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="toastTransform" Y="-30"/>
+                </Border.RenderTransform>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                    <!-- ICON -->
+                    <TextBlock x:Name="txtToastIcon"
+                       Text="✔"
+                       FontSize="16"
+                       Margin="0,0,8,0"
+                       Foreground="White"/>
+
+                    <!-- TEXT -->
+                    <TextBlock x:Name="txtToast"
+                       Foreground="White"
+                       FontSize="14"
+                       VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
