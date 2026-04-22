@@ -9,10 +9,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="hinhanh\**" />
+    <EmbeddedResource Remove="hinhanh\**" />
+    <None Remove="hinhanh\**" />
+    <Page Remove="hinhanh\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Noto\NotoSans-Bold.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Noto\NotoSans-BoldItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Noto\NotoSans-Italic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Noto\NotoSans-Regular.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Black.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-BlackItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Bold.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-BoldItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Italic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Light.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-LightItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Medium.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-MediumItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Regular.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-Thin.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Bold.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-BoldItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Italic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Light.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
+    <Content Remove="C:\Users\Dang Khoa\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="background.jpg" />
-    <None Remove="hinhanh\background_lg.gif" />
-    <None Remove="hinhanh\background_login.jpg" />
-    <None Remove="hinhanh\car1.jpg" />
+    <None Remove="Images\background.jpg" />
+    <None Remove="Images\background.png" />
+    <None Remove="Images\background_lg.gif" />
     <None Remove="Images\facebook.png" />
     <None Remove="Images\github.png" />
     <None Remove="Images\google.png" />
@@ -25,14 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="background.jpg" />
-    <Resource Include="hinhanh\background_lg.gif">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="hinhanh\background_login.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="hinhanh\car1.jpg" />
+    <Resource Include="Images\background.png" />
     <Resource Include="Images\facebook.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
