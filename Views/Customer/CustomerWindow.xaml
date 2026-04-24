@@ -63,7 +63,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="🚘" Foreground="White" Margin="0,-5,10,0" FontSize="29"/>
+                <TextBlock Text="🚘" Foreground="White" Margin="0,-10,10,0" FontSize="29"/>
                 <TextBlock Text="GARA AUTO" Foreground="White" FontSize="20" FontWeight="Bold"/>
             </StackPanel>
 
@@ -130,13 +130,13 @@
                             <ContextMenu>
                                 <MenuItem Header="Cài đặt tài khoản">
                                     <MenuItem.Icon>
-                                        <TextBlock Text="⚙️"/>
+                                        <TextBlock Text="⚙️" VerticalAlignment="Center"/>
                                     </MenuItem.Icon>
                                 </MenuItem>
-                                <Separator/>
-                                <MenuItem Header="Đăng xuất" Foreground="Red">
+
+                                <MenuItem x:Name="btnLogout" Header="Đăng xuất" Foreground="Red" Click="btnLogout_Click">
                                     <MenuItem.Icon>
-                                        <TextBlock Text="🚪"/>
+                                        <TextBlock Text="🚪" VerticalAlignment="Center"/>
                                     </MenuItem.Icon>
                                 </MenuItem>
                             </ContextMenu>
@@ -194,7 +194,7 @@
                         <TextBlock Grid.Column="0" Text="🔍" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#B7B9CC" FontSize="14"/>
                         <TextBlock Grid.Column="1" Text="Tìm kiếm khách hàng..." Foreground="#B7B9CC" VerticalAlignment="Center" Margin="5,0" IsHitTestVisible="False"
                                    Visibility="{Binding Text.IsEmpty, ElementName=txtSearch, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBox x:Name="txtSearch" Grid.Column="1" Background="Transparent" BorderThickness="0" VerticalContentAlignment="Center" Padding="5,0"/>
+                        <TextBox x:Name="txtSearch" Grid.Column="1" Background="Transparent" BorderThickness="0" VerticalContentAlignment="Center" Padding="5,0" TextChanged="TxtSearch_TextChanged"/>
                     </Grid>
                 </Border>
                 <Button Content="+ Thêm khách hàng" HorizontalAlignment="Right" Background="{StaticResource PrimaryBlue}" Foreground="White" 
@@ -235,11 +235,14 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="8,0">
-                                            <Image Source="/Images/edit_icon.png" Width="18" Height="18"/>
+                                        <Button x:Name="btnEdit" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="8,0" 
+                                    Click="btnEdit_Click">
+                                            <Image Source="/Images/edit_icon.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Button>
-                                        <Button Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="8,0">
-                                            <Image Source="/Images/delete_icon.png" Width="18" Height="18"/>
+
+                                        <Button x:Name="btnDelete" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="8,0" 
+                        Click="btnDelete_Click">
+                                            <Image Source="/Images/delete_icon.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>
