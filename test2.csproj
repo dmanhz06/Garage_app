@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <None Remove="background.jpg" />
+    <None Remove="Images\account.png" />
     <None Remove="Images\avatar_user.png" />
     <None Remove="Images\background.jpg" />
     <None Remove="Images\background.png" />
@@ -55,6 +56,7 @@
     <None Remove="Images\google.png" />
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\settings_profile.png" />
+    <None Remove="Images\settings_profile1.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +65,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\account.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\avatar_user.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -92,6 +97,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\settings_profile.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\settings_profile1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
