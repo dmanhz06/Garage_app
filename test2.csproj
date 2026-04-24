@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="background.jpg" />
     <None Remove="Images\account.png" />
     <None Remove="Images\avatar_user.png" />
@@ -60,8 +61,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.72" />
     <PackageReference Include="MaterialDesignColors" Version="5.3.1" />
     <PackageReference Include="MaterialDesignThemes" Version="5.3.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.7" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.1" />
   </ItemGroup>
 
   <ItemGroup>
