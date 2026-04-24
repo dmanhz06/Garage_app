@@ -42,13 +42,19 @@
 
   <ItemGroup>
     <None Remove="background.jpg" />
+    <None Remove="Images\avatar_user.png" />
     <None Remove="Images\background.jpg" />
     <None Remove="Images\background.png" />
     <None Remove="Images\background_lg.gif" />
+    <None Remove="Images\bell.png" />
+    <None Remove="Images\delete_icon.png" />
+    <None Remove="Images\edit_icon.png" />
     <None Remove="Images\facebook.png" />
+    <None Remove="Images\garage_logo.png" />
     <None Remove="Images\github.png" />
     <None Remove="Images\google.png" />
     <None Remove="Images\linkedin.png" />
+    <None Remove="Images\settings_profile.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,8 +63,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\avatar_user.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\background.png" />
+    <Resource Include="Images\bell.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\delete_icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\edit_icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\facebook.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\garage_logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\github.png">
@@ -68,6 +89,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\linkedin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\settings_profile.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -238,9 +238,12 @@ namespace test2
                     {
                         Dispatcher.Invoke(() =>
                         {
-                            MainWindow main = new MainWindow();
-                            main.Show();
+                            
+                            test2.Views.Customer.CustomerWindow customerWin = new test2.Views.Customer.CustomerWindow();
+                            customerWin.Show();
+
                             this.Close();
+                            // ---------------------------
                         });
                     });
 
