@@ -140,5 +140,21 @@ namespace test2.Views.Customer
             CustomerDataGrid.ItemsSource = null;
             CustomerDataGrid.ItemsSource = _allCustomers;
         }
+        private void MenuSideBar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+            if (listBox == null || listBox.SelectedItem == null) return;
+
+            var selectedItem = listBox.SelectedItem as ListBoxItem;
+            var content = (selectedItem.Content as StackPanel)?.Children.OfType<TextBlock>().LastOrDefault()?.Text;
+
+            if (content == "Xe")
+            {
+                // Mở cửa sổ Xe và đóng cửa sổ hiện tại
+                Car.CarWindow carWin = new Car.CarWindow();
+                carWin.Show();
+                this.Close();
+            }
+        }
     }
 }
