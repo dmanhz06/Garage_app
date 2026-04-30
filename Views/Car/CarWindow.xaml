@@ -170,7 +170,7 @@
             <Grid Grid.Row="0" Margin="0,0,0,20">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="Quản lý xe" FontSize="26" FontWeight="Bold" Foreground="#333"/>
-                    <Image Source="/Images/account.png" Width="25" Height="25" Margin="15,0,0,0"/>
+                    <Image Source="/Images/car2.jpg" Width="45" Height="40" Margin="15,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
