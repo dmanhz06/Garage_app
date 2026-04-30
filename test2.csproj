@@ -49,6 +49,9 @@
     <None Remove="Images\background.png" />
     <None Remove="Images\background_lg.gif" />
     <None Remove="Images\bell.png" />
+    <None Remove="Images\car.png" />
+    <None Remove="Images\car1.jpg" />
+    <None Remove="Images\car2.jpg" />
     <None Remove="Images\delete_icon.png" />
     <None Remove="Images\edit_icon.png" />
     <None Remove="Images\facebook.png" />
@@ -85,6 +88,15 @@
     </Resource>
     <Resource Include="Images\background.png" />
     <Resource Include="Images\bell.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\car.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\car1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\car2.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\delete_icon.png">
