@@ -18,7 +18,12 @@ namespace test2.Helpers
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            _connectionString = configuration.GetConnectionString("GarageManagement");
+            _connectionString = @"Data Source=THUANPC;Network Library=DBMSSOCN;Initial Catalog=GarageManagement;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
+        }
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(_connectionString);
         }
 
         // 1. Hàm dùng để lấy dữ liệu (Dành cho SELECT - trả về DataTable để đổ vào DataGrid)

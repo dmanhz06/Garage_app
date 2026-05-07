@@ -6,7 +6,6 @@ using System.Windows.Controls;
 
 namespace test2.Views.Customer
 {
-    // Lớp model cho dữ liệu khách hàng
     public class CustomerModel
     {
         public int STT { get; set; }
@@ -18,7 +17,6 @@ namespace test2.Views.Customer
 
     public partial class CustomerWindow : Window
     {
-        // Lưu danh sách gốc để phục vụ việc lọc/tìm kiếm
         private List<CustomerModel> _allCustomers;
 
         public CustomerWindow()
@@ -26,7 +24,6 @@ namespace test2.Views.Customer
             InitializeComponent();
             LoadData();
 
-            // Gán sự kiện tìm kiếm nếu bạn đã đặt tên TextBox là txtSearch trong XAML
             if (txtSearch != null)
             {
                 txtSearch.TextChanged += TxtSearch_TextChanged;
@@ -35,7 +32,6 @@ namespace test2.Views.Customer
 
         private void LoadData()
         {
-            // Khởi tạo dữ liệu mẫu giống như trong thiết kế
             _allCustomers = new List<CustomerModel>
             {
                 new CustomerModel { STT = 1, HoVaTen = "Nguyễn Văn A", SoDienThoai = "0901234567", DiaChi = "Hà Nội", Email = "a@gmail.com" },

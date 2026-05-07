@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using test2.Models;
 
+
 public class CustomerRepository
 {
     public List<Customer> GetAllCustomers()

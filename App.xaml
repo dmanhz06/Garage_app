@@ -1,7 +1,10 @@
 ﻿<Application x:Class="test2.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Views/Invoices/InvoiceWindow.xaml">
+             StartupUri="Views/Inventory/InventoryWindow.xaml">
+
+             <!-- Customer/CustomerWindow.xaml
+             Inventory/InventoryWindow.xaml -->
     <Application.Resources>
         <SolidColorBrush x:Key="PrimaryBlue" Color="#4F46E5"/>
         <SolidColorBrush x:Key="SidebarBg" Color="#1E293B"/>
