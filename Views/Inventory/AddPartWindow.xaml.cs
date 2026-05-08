@@ -13,7 +13,7 @@ namespace test2.Views.Inventory
             InitializeComponent();
         }
 
-        public void Save_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtAddPartName.Text))
             {
@@ -21,32 +21,30 @@ namespace test2.Views.Inventory
                 return;
             }
 
-            try 
+            // Kiểm tra tính hợp lệ của tất cả các trường dữ liệu số
+            if (!decimal.TryParse(txtAddImportPrice.Text, out decimal importPrice) ||
+                !decimal.TryParse(txtAddPrice.Text, out decimal price) ||
+                !int.TryParse(txtAddQuantity.Text, out int quantity))
             {
-                NewPart = new Part
-                {
-                    PartName = txtAddPartName.Text,
-                    Unit = txtAddUnit.Text,
-                    ImportPrice = decimal.Parse(txtAddImportPrice.Text),
-                    Price = decimal.Parse(txtAddPrice.Text),
-                    StockQuantity = int.Parse(txtAddQuantity.Text),
-                    MinimumStock = 5 
-                };
+                MessageBox.Show("Giá nhập, Giá bán và Số lượng tồn phải là kiểu số hợp lệ!", "Lỗi nhập liệu", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-                this.DialogResult = true; 
-                this.Close();
-            }
-            catch (FormatException)
+            NewPart = new Part
             {
-                MessageBox.Show("Giá tiền và Số lượng phải là số!", "Lỗi nhập liệu", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
-            }
+                PartName = txtAddPartName.Text,
+                Unit = txtAddUnit.Text,
+                ImportPrice = importPrice,
+                Price = price,
+                StockQuantity = quantity,
+                MinimumStock = 5 // Giá trị mặc định theo yêu cầu của DB
+            };
+
+            this.DialogResult = true;
+            this.Close();
         }
 
-        public void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
             this.Close();

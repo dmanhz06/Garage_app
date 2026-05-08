@@ -12,13 +12,12 @@ namespace test2.Helpers
 
         static DatabaseHelper()
         {
-            // Tự động đọc chuỗi kết nối từ file appsettings.json
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            _connectionString = @"Data Source=THUANPC;Network Library=DBMSSOCN;Initial Catalog=GarageManagement;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
+            _connectionString = @"Server=127.0.0.1;Database=GarageManagement;Integrated Security=True;TrustServerCertificate=True;";
         }
 
         public static SqlConnection GetConnection()
@@ -26,7 +25,6 @@ namespace test2.Helpers
             return new SqlConnection(_connectionString);
         }
 
-        // 1. Hàm dùng để lấy dữ liệu (Dành cho SELECT - trả về DataTable để đổ vào DataGrid)
         public static DataTable ExecuteQuery(string sql, SqlParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
@@ -44,7 +42,6 @@ namespace test2.Helpers
             return dt;
         }
 
-        // 2. Hàm dùng để Thêm, Sửa, Xóa (Dành cho INSERT, UPDATE, DELETE)
         public static int ExecuteNonQuery(string sql, SqlParameter[] parameters = null)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -58,7 +55,6 @@ namespace test2.Helpers
             }
         }
 
-        // 3. Hàm lấy một giá trị duy nhất (Dành cho SUM, COUNT, MAX)
         public static object ExecuteScalar(string sql, SqlParameter[] parameters = null)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))

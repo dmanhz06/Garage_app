@@ -5,7 +5,6 @@ namespace test2.Views.Inventory
 {
     public partial class EditPartWindow : Window
     {
-        // Property để hứng dữ liệu truyền từ cửa sổ chính sang
         public InventoryModel CurrentPart { get; set; }
 
         public EditPartWindow(InventoryModel part)
@@ -13,36 +12,35 @@ namespace test2.Views.Inventory
             InitializeComponent();
             CurrentPart = part;
 
-            // Đổ dữ liệu cũ vào các TextBox để Thuận sửa
-            // Phải đảm bảo các x:Name trong XAML khớp hoàn toàn với ở đây
+            // Đổ dữ liệu cũ vào form. Xử lý xóa dấu phẩy ở Giá Bán để dễ nhập liệu lại
             txtEditPartName.Text = part.TenPhuTung;
             txtEditUnit.Text = part.ĐVT;
-            txtEditPrice.Text = part.GiaBan;
+            txtEditPrice.Text = part.GiaBan?.Replace(",", "").Replace(".", "");
             txtEditQuantity.Text = part.TonKho.ToString();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            try 
+            if (string.IsNullOrWhiteSpace(txtEditPartName.Text))
             {
-                // Cập nhật lại đối tượng với dữ liệu mới từ TextBox
-                CurrentPart.TenPhuTung = txtEditPartName.Text;
-                CurrentPart.ĐVT = txtEditUnit.Text;
-                CurrentPart.GiaBan = txtEditPrice.Text;
-                
-                // Chuyển đổi an toàn từ chuỗi sang số
-                if (int.TryParse(txtEditQuantity.Text, out int quantity))
-                {
-                    CurrentPart.TonKho = quantity;
-                }
+                MessageBox.Show("Tên phụ tùng không được để trống!", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-                this.DialogResult = true;
-                this.Close();
-            }
-            catch (Exception ex)
+            if (!int.TryParse(txtEditQuantity.Text, out int quantity))
             {
-                MessageBox.Show("Có lỗi xảy ra khi lưu dữ liệu: " + ex.Message);
+                MessageBox.Show("Số lượng tồn kho không hợp lệ!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            // Chỉ cập nhật những thuộc tính hiển thị trên Form
+            CurrentPart.TenPhuTung = txtEditPartName.Text;
+            CurrentPart.ĐVT = txtEditUnit.Text;
+            CurrentPart.GiaBan = txtEditPrice.Text; // Sẽ được parse lại ở hàm BtnEdit_Click bên kia
+            CurrentPart.TonKho = quantity;
+
+            this.DialogResult = true;
+            this.Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

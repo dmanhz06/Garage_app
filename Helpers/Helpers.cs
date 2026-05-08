@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 public static class DatabaseHelper
 {
    
-    private static string _connectionString = "Server=ASUS-ZEPHERUS-G\\SQLEXPRESS;Database=GarageManagement;Trusted_Connection=True;TrustServerCertificate=True;";
+    private static string _connectionString = "Server=127.0.0.1;Database=GarageManagement;Trusted_Connection=True;TrustServerCertificate=True;";
 
     public static SqlConnection GetConnection()
     {

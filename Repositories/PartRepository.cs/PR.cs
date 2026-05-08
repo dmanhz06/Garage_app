@@ -69,4 +69,14 @@ public class PartRepository
             MessageBox.Show("Lỗi khi XÓA: " + ex.Message);
         }
     }
+
+    public List<Part> GetLowStockParts()
+{
+    using (IDbConnection db = DatabaseHelper.GetConnection())
+    {
+        // Lấy những phụ tùng có số lượng tồn kho nhỏ hơn hoặc bằng mức tối thiểu
+        string sql = "SELECT * FROM Parts WHERE StockQuantity <= MinimumStock";
+        return db.Query<Part>(sql).ToList();
+    }
+}
 }
