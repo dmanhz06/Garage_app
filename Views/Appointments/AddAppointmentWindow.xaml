@@ -9,7 +9,7 @@
         Background="White"
         FontFamily="Segoe UI">
 
-    <Border Padding="25" Margin="0,0,0,-57">
+    <Border Padding="25" Margin="0,0,0,-98">
         <Grid Margin="0,0,0,86">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
