@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\Appointments\AddAppointmentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Car\AddCarWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,6 +18,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Customer\AddCustomerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Appointments\AppointmentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dashboard\DashboardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Invoices\InvoiceWindow.xaml.cs">

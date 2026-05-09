@@ -1,0 +1,384 @@
+﻿<Window x:Class="test2.Views.Appointments.AppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Đặt lịch"
+        Height="800"
+        Width="1300"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI"
+        Background="#F8F9FC">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="SidebarBrush" Color="#082B49"/>
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#2563EB"/>
+
+        <Style x:Key="MenuStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="bd"
+                                Padding="15,12"
+                                Margin="10,3"
+                                Background="Transparent"
+                                CornerRadius="8">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#164E7A"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#123B5C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="22"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Grid Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="🚘" FontSize="30" Foreground="White" Margin="0,0,10,0"/>
+                <TextBlock Text="GARA AUTO" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            </StackPanel>
+
+            <ListBox x:Name="MenuSideBar"
+                     Grid.Row="1"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Margin="0,10,0,0"
+                     SelectionChanged="MenuSideBar_SelectionChanged">
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="⌂" Foreground="White" FontSize="18"/>
+                        <TextBlock Text="Dashboard" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="👤" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="Quản lý khách hàng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🚗" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="Xe" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🛠" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="Dịch vụ" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📦" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="Phụ tùng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}" IsSelected="True">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📅" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="Đặt lịch" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+
+            <!-- QUẢN LÝ -->
+            <Border Grid.Row="2"
+                    Background="#123B5C"
+                    Padding="15"
+                    Margin="15,0,15,20"
+                    CornerRadius="14">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Ellipse Width="42" Height="42" Fill="White"/>
+                    <TextBlock Text="👤"
+                               FontSize="24"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                        <TextBlock Text="Nguyễn Văn A"
+                                   Foreground="White"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="Quản lý"
+                                   Foreground="#CBD5E1"
+                                   FontSize="12"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="2"
+                            Content="⋮"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontSize="18"
+                            Click="btnLogout_Click"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- MAIN CONTENT -->
+        <Grid Grid.Column="1" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- HEADER -->
+            <Grid Margin="0,0,0,25">
+                <TextBlock Text="Đặt lịch"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#111827"
+                           VerticalAlignment="Center"/>
+
+                <Button Content="+  Đặt lịch mới"
+                        Width="150"
+                        Height="45"
+                        HorizontalAlignment="Right"
+                        Background="{StaticResource PrimaryBlue}"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="SemiBold"
+                        Cursor="Hand"
+                        Click="btnAddAppointment_Click"/>
+            </Grid>
+
+            <!-- CONTENT -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.3*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- DANH SÁCH LỊCH HẸN -->
+                <Border Grid.Column="0"
+                        Style="{StaticResource CardStyle}"
+                        Margin="0,0,20,0">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Danh sách lịch hẹn"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#111827"/>
+
+                        <!-- KHOẢNG THỜI GIAN -->
+                        <Border Grid.Row="1"
+                                Height="42"
+                                Margin="0,20,0,12"
+                                BorderBrush="#E5E7EB"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Background="White">
+                            <Grid>
+                                <TextBlock Text="‹"
+                                           FontSize="22"
+                                           Foreground="#6B7280"
+                                           VerticalAlignment="Center"
+                                           Margin="15,0,0,0"/>
+
+                                <TextBlock
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Center"
+                                           Foreground="#374151"
+                                           FontWeight="SemiBold" Margin="0,6,0,0" Text="Tra cứu thời gian" Width="163" FontSize="16" TextAlignment="Center"/>
+
+                                <TextBlock Text="⌄"
+                                           FontSize="18"
+                                           Foreground="#6B7280"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,0,15,0"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- TRA CỨU THEO THỜI GIAN -->
+                        <TextBox x:Name="txtSearchTime"
+                                 Grid.Row="2"
+                                 Height="35"
+                                 Margin="0,0,0,15"
+                                 Padding="10,0"
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="txtSearchTime_TextChanged"
+                                 ToolTip="Nhập thời gian: 20/05/2024 hoặc 08:30"/>
+
+                        <!-- BẢNG DỮ LIỆU -->
+                        <DataGrid x:Name="AppointmentDataGrid"
+                                  Grid.Row="3"
+                                  AutoGenerateColumns="False"
+                                  CellEditEnding="AppointmentDataGrid_CellEditEnding"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="None"
+                                  BorderThickness="0"
+                                  Background="White"
+                                  RowHeight="48">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Họ tên"
+                                                    Binding="{Binding CustomerName}"
+                                                    Width="140"/>
+
+                                <DataGridTextColumn Header="Biển số"
+                                                    Binding="{Binding LicensePlate}"
+                                                    Width="110"/>
+
+                                <DataGridTextColumn Header="Hãng xe"
+                                                    Binding="{Binding CarBrand}"
+                                                    Width="130"/>
+
+                                <DataGridTextColumn Header="Thời gian"
+                                                    Binding="{Binding AppointmentTime, StringFormat={}{0:dd/MM/yyyy HH:mm}}"
+                                                    Width="150"/>
+
+                                <DataGridTemplateColumn Header="Trạng thái">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Status}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox SelectedValue="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectionChanged="StatusComboBox_SelectionChanged">
+                                                <ComboBoxItem Content="Đang chờ"/>
+                                                <ComboBoxItem Content="Đang sửa"/>
+                                                <ComboBoxItem Content="Hoàn thành"/>
+                                                <ComboBoxItem Content="Đã hủy"/>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Xóa" Width="60">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnDeleteAppointment_Click"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Xóa lịch hẹn">
+                                                <Image Source="/Images/delete_icon.png"
+                       Width="24"
+                       Height="24"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+                <!-- CALENDAR -->
+                <Border Grid.Column="1"
+                        Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Margin="0,0,0,20">
+                            <TextBlock Text="›"
+                                       FontSize="28"
+                                       Foreground="#6B7280"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+
+                        <Viewbox Stretch="Uniform" Margin="0,55,0,0" Grid.RowSpan="2">
+                            <Calendar x:Name="MainCalendar"
+                                      SelectedDate="2024-05-20"
+                                      DisplayDate="2024-05-20"
+                                      Width="188"
+                                      Height="206"
+                                      FontSize="18"
+                                      BorderThickness="0"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- LEGEND -->
+            <Border Grid.Row="2"
+                    Background="White"
+                    CornerRadius="12"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    Padding="25"
+                    Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,65,0">
+                        <Ellipse Width="9" Height="9" Fill="#FACC15" Margin="0,0,10,0"/>
+                        <TextBlock Text="Đang chờ" Foreground="#374151"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,65,0">
+                        <Ellipse Width="9" Height="9" Fill="#2563EB" Margin="0,0,10,0"/>
+                        <TextBlock Text="Đang sửa" Foreground="#374151"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,65,0">
+                        <Ellipse Width="9" Height="9" Fill="#22C55E" Margin="0,0,10,0"/>
+                        <TextBlock Text="Hoàn thành" Foreground="#374151"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="9" Height="9" Fill="#EF4444" Margin="0,0,10,0"/>
+                        <TextBlock Text="Hủy" Foreground="#374151"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

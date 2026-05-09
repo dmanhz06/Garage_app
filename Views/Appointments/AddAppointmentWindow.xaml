@@ -1,0 +1,94 @@
+﻿<Window x:Class="test2.Views.Appointments.AddAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Thêm lịch hẹn"
+        Width="419"
+        Height="503"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="White"
+        FontFamily="Segoe UI">
+
+    <Border Padding="25" Margin="0,0,0,-57">
+        <Grid Margin="0,0,0,86">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="269*"/>
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="29*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="26.6"/>
+                <RowDefinition Height="25.4"/>
+                <RowDefinition Height="0"/>
+            </Grid.RowDefinitions>
+
+            <!-- TIÊU ĐỀ -->
+            <StackPanel Margin="0,0,0,208" Grid.RowSpan="2">
+                <TextBlock Text="Thêm lịch hẹn"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#2563EB"/>
+
+                <TextBlock Text="Vui lòng điền đầy đủ thông tin lịch hẹn"
+                           FontSize="12"
+                           Foreground="#6B7280"
+                           Margin="0,4,0,12"/>
+
+                <Border Height="1" Background="#2563EB"/>
+            </StackPanel>
+
+            <!-- FORM -->
+            <StackPanel Grid.Row="1" Margin="0,67,0,0" Grid.RowSpan="4">
+
+                <TextBlock Text="Họ và tên"/>
+                <TextBox x:Name="txtHoTen"
+                         Height="32"
+                         Margin="0,5,0,12"/>
+
+                <TextBlock Text="Biển số"/>
+                <TextBox x:Name="txtBienSo"
+                         Height="32"
+                         Margin="0,5,0,12"/>
+
+                <TextBlock Text="Hãng xe"/>
+                <TextBox x:Name="txtHangXe"
+                         Height="32"
+                         Margin="0,5,0,12"/>
+
+                <TextBlock Text="Thời gian hẹn"/>
+                <TextBox x:Name="txtThoiGian"
+                         Height="32"
+                         Margin="0,5,0,5"
+                         ToolTip="Ví dụ: 20/05/2024 08:30"/>
+
+                <TextBlock Text="Ví dụ: 20/05/2024 08:30"
+                           FontSize="11"
+                           Foreground="#6B7280"/>
+            </StackPanel>
+
+            <!-- BUTTON -->
+            <StackPanel Grid.Row="5"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,18,0,0" Grid.RowSpan="2" Width="220">
+
+                <Button x:Name="btnCancel"
+                        Content="Hủy bỏ"
+                        Width="90"
+                        Height="34"
+                        Margin="0,0,10,0"
+                        Click="btnCancel_Click"/>
+
+                <Button x:Name="btnSave"
+                        Content="Lưu thông tin"
+                        Width="120"
+                        Height="34"
+                        Background="#4F6BED"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="SemiBold"
+                        Click="btnSave_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

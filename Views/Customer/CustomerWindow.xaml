@@ -125,7 +125,7 @@
                         <TextBlock Text="Quản lý" Foreground="#9DA1A7" FontSize="11"/>
                     </StackPanel>
 
-                    <Button Grid.Column="2" Background="Transparent" BorderThickness="0" Foreground="White" Cursor="Hand" Content="⋮" FontSize="20" VerticalAlignment="Center">
+                    <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Foreground="White" Cursor="Hand" Content="⋮" FontSize="20" VerticalAlignment="Center" Margin="161,0,0,0">
                         <Button.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Cài đặt tài khoản">

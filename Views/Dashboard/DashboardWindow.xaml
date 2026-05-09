@@ -1,0 +1,303 @@
+﻿<Window x:Class="test2.Views.Dashboard.DashboardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dashboard" Height="750" Width="1250"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="SidebarBrush" Color="#1A1D21"/>
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#4E73DF"/>
+
+        <Style x:Key="MenuStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="bd" Padding="15,12" Background="Transparent" Margin="10,2">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource PrimaryBlue}"/>
+                                <Setter TargetName="bd" Property="CornerRadius" Value="8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="BorderBrush" Value="#E3E6F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+        </Style>
+
+        <Style x:Key="CenterTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F8F9FC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- SIDEBAR -->
+        <Grid Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="🚘" Foreground="White" Margin="0,-10,10,0" FontSize="29"/>
+                <TextBlock Text="GARA AUTO" Foreground="White" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <ListBox x:Name="MenuSideBar" Grid.Row="1" Background="Transparent" BorderThickness="0"
+                     Margin="0,10" SelectionChanged="MenuSideBar_SelectionChanged">
+
+                <ListBoxItem Style="{StaticResource MenuStyle}" IsSelected="True">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊" Foreground="White"/>
+                        <TextBlock Text="Dashboard" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="👥" Foreground="White"/>
+                        <TextBlock Text="Quản lý khách hàng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🚘" Foreground="White"/>
+                        <TextBlock Text="Xe" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🛠️" Foreground="White"/>
+                        <TextBlock Text="Dịch vụ" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📦" Foreground="White"/>
+                        <TextBlock Text="Phụ tùng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📅" Foreground="White"/>
+                        <TextBlock Text="Đặt lịch" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+
+            <Border Grid.Row="2" Background="#2A2E33" Padding="15" CornerRadius="10" Margin="10,0,10,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Ellipse Width="40" Height="40" Stroke="White" StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/account.png" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                        <TextBlock Text="Dmanhz" Foreground="White" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="Quản lý" Foreground="#9DA1A7" FontSize="11"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="2" Background="Transparent" BorderThickness="0"
+                            Foreground="White" Cursor="Hand" Content="⋮" FontSize="20">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Cài đặt tài khoản"/>
+                                <MenuItem Header="Đăng xuất" Foreground="Red" Click="btnLogout_Click"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- MAIN CONTENT -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- HEADER -->
+                <Grid Grid.Row="0" Margin="0,0,0,20">
+                    <TextBlock Text="Dashboard" FontSize="26" FontWeight="Bold" Foreground="#333"/>
+
+                    <ComboBox x:Name="cbTimeFilter" Width="140" Height="36"
+                              HorizontalAlignment="Right"
+                              SelectionChanged="cbTimeFilter_SelectionChanged">
+                        <ComboBoxItem Content="7 ngày qua" IsSelected="True"/>
+                        <ComboBoxItem Content="30 ngày qua"/>
+                        <ComboBoxItem Content="Tất cả"/>
+                    </ComboBox>
+                </Grid>
+
+                <!-- STAT CARDS -->
+                <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,25">
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📋" FontSize="34" Margin="0,0,15,0"/>
+                            <StackPanel>
+                                <TextBlock x:Name="txtRepairOrders" Text="0" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="Phiếu sửa chữa" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="👤" FontSize="34" Margin="0,0,15,0"/>
+                            <StackPanel>
+                                <TextBlock x:Name="txtCustomers" Text="0" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="Khách hàng" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="💰" FontSize="34" Margin="0,0,15,0"/>
+                            <StackPanel>
+                                <TextBlock x:Name="txtRevenue" Text="0" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="Doanh thu (tr)" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}" Margin="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🚗" FontSize="34" Margin="0,0,15,0"/>
+                            <StackPanel>
+                                <TextBlock x:Name="txtCarsInGarage" Text="0" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="Xe trong gara" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- CHART AREA -->
+                <Grid Grid.Row="2" Margin="0,0,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="White" CornerRadius="12"
+                            BorderBrush="#E3E6F0" BorderThickness="1" Padding="20" Margin="0,0,20,0">
+                        <StackPanel>
+                            <TextBlock Text="Doanh thu theo ngày (triệu đồng)"
+                                       FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+                            <ItemsControl x:Name="RevenueChart">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="12,0" VerticalAlignment="Bottom">
+                                            <Border Width="35"
+                                                    Height="{Binding BarHeight}"
+                                                    Background="#2F7ED8"
+                                                    CornerRadius="4"/>
+                                            <TextBlock Text="{Binding DayName}"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,8,0,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="White" CornerRadius="12"
+                            BorderBrush="#E3E6F0" BorderThickness="1" Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Tỷ lệ dịch vụ sử dụng"
+                                       FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                            <DataGrid x:Name="ServiceRateGrid"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
+                                      HeadersVisibility="Column"
+                                      GridLinesVisibility="Horizontal"
+                                      RowHeight="38"
+                                      BorderThickness="0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Dịch vụ" Binding="{Binding ServiceName}" Width="*"/>
+                                    <DataGridTextColumn Header="Số lượng" Binding="{Binding Count}" Width="100"/>
+                                    <DataGridTextColumn Header="Tỷ lệ" Binding="{Binding Rate}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- RECENT REPAIR ORDER -->
+                <Border Grid.Row="3" Background="White" CornerRadius="12"
+                        BorderBrush="#E3E6F0" BorderThickness="1" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Phiếu sửa chữa gần đây"
+                                   FontSize="20" FontWeight="Bold"
+                                   Margin="10,10,0,15"/>
+
+                        <DataGrid x:Name="RecentRepairDataGrid"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  RowHeight="50"
+                                  BorderThickness="0">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã phiếu" Binding="{Binding RepairCode}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                                <DataGridTextColumn Header="Khách hàng" Binding="{Binding CustomerName}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                                <DataGridTextColumn Header="Xe" Binding="{Binding LicensePlate}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                                <DataGridTextColumn Header="Dịch vụ" Binding="{Binding ServiceName}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                                <DataGridTextColumn Header="Ngày tạo" Binding="{Binding CreatedDateText}" Width="*"
+                                                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
