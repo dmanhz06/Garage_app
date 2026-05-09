@@ -131,15 +131,18 @@ namespace test2.Views.Appointments
             }
 
             string sql = @"
-                INSERT INTO RepairOrders (VehicleID, EntryDate, Status, Note)
-                VALUES (@VehicleID, @EntryDate, @Status, NULL);";
+    INSERT INTO RepairOrders (VehicleID, EntryDate, Status, Note)
+    VALUES (@VehicleID, @EntryDate, @Status, @Note);";
 
             SqlParameter[] parameters =
-            {
-                new SqlParameter("@VehicleID", selectedVehicleID),
-                new SqlParameter("@EntryDate", thoiGian),
-                new SqlParameter("@Status", "Đang chờ")
-            };
+{
+    new SqlParameter("@VehicleID", selectedVehicleID),
+    new SqlParameter("@EntryDate", thoiGian),
+    new SqlParameter("@Status", "Đang chờ"),
+    new SqlParameter("@Note", string.IsNullOrWhiteSpace(txtNote.Text)
+        ? DBNull.Value
+        : txtNote.Text.Trim())
+};
 
             test2.Helpers.DatabaseHelper.ExecuteNonQuery(sql, parameters);
 
@@ -149,6 +152,7 @@ namespace test2.Views.Appointments
                 LicensePlate = cboBienSo.Text.Trim(),
                 CarBrand = txtHangXe.Text.Trim(),
                 AppointmentTime = thoiGian,
+                Note = txtNote.Text.Trim(),
                 Status = "Đang chờ"
             };
 

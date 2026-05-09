@@ -278,6 +278,10 @@
                                                     Binding="{Binding AppointmentTime, StringFormat={}{0:dd/MM/yyyy HH:mm}}"
                                                     Width="150"/>
 
+                                <DataGridTextColumn Header="Note"
+                    Binding="{Binding Note}"
+                    Width="160"/>
+
                                 <DataGridTemplateColumn Header="Trạng thái">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

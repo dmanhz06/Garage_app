@@ -17,6 +17,8 @@ namespace test2.Views.Appointments
         public DateTime AppointmentTime { get; set; }
         public string Status { get; set; } = "";
 
+        public string Note { get; set; }
+
         public string AppointmentTimeText
         {
             get { return AppointmentTime.ToString("dd/MM/yyyy HH:mm"); }
@@ -42,6 +44,7 @@ namespace test2.Views.Appointments
             v.LicensePlate,
             v.Brand AS CarBrand,
             ro.EntryDate AS AppointmentTime,
+            ro.Note,
             ro.Status
         FROM RepairOrders ro
         JOIN Vehicles v ON ro.VehicleID = v.VehicleID
