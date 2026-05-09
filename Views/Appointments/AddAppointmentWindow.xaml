@@ -41,19 +41,25 @@
             <StackPanel Grid.Row="1" Margin="0,67,0,0" Grid.RowSpan="4">
 
                 <TextBlock Text="Họ và tên"/>
-                <TextBox x:Name="txtHoTen"
-                         Height="32"
-                         Margin="0,5,0,12"/>
+                <ComboBox x:Name="cboHoTen"
+          IsEditable="True"
+          IsTextSearchEnabled="False"
+          Height="38"
+          SelectionChanged="cboHoTen_SelectionChanged"
+          KeyUp="cboHoTen_KeyUp"/>
 
                 <TextBlock Text="Biển số"/>
-                <TextBox x:Name="txtBienSo"
-                         Height="32"
-                         Margin="0,5,0,12"/>
+                <ComboBox x:Name="cboBienSo"
+          IsEditable="True"
+          IsTextSearchEnabled="False"
+          Height="38"
+          IsEnabled="False"
+          SelectionChanged="cboBienSo_SelectionChanged"/>
 
                 <TextBlock Text="Hãng xe"/>
                 <TextBox x:Name="txtHangXe"
-                         Height="32"
-                         Margin="0,5,0,12"/>
+         Height="38"
+         IsReadOnly="True"/>
 
                 <TextBlock Text="Thời gian hẹn"/>
                 <TextBox x:Name="txtThoiGian"
