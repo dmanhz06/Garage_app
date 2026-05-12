@@ -1,0 +1,62 @@
+﻿<Window x:Class="test2.Views.Service.AddServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Thêm Dịch Vụ Mới" Height="350" Width="480"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Border Background="White" CornerRadius="15" BorderBrush="#E3E6F0" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="270" Opacity="0.1" ShadowDepth="3"/>
+        </Border.Effect>
+
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,20">
+                <TextBlock Text="THÊM DỊCH VỤ MỚI" FontSize="22" FontWeight="Bold" Foreground="#4E73DF" HorizontalAlignment="Center"/>
+                <Border Height="3" Width="50" Background="#4E73DF" CornerRadius="2" Margin="0,8,0,0"/>
+                <TextBlock Text="Vui lòng nhập thông tin phiếu dịch vụ" FontSize="12" Foreground="#858796" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="5,0">
+                    <TextBlock Text="Tên dịch vụ" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <TextBox x:Name="txtTenDichVu" Height="40" VerticalContentAlignment="Center" Padding="12,0" 
+                 BorderBrush="#D1D3E2" BorderThickness="1" Margin="0,0,0,15" Tag="VD: Thay nhớt, bảo dưỡng..."/>
+
+                    <TextBlock Text="Giá tiền (VNĐ)" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <TextBox x:Name="txtGiaTien" Height="40" VerticalContentAlignment="Center" Padding="12,0" 
+                 BorderBrush="#D1D3E2" BorderThickness="1" Margin="0,0,0,15" Tag="VD: 500000"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,25,0,0">
+                <Button Content="Hủy bỏ" Click="btnCancel_Click" Width="100" Height="40" 
+                        Background="Transparent" Foreground="#858796" BorderBrush="#858796" BorderThickness="1" Margin="0,0,15,0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Content="Lưu thông tin" Click="btnSave_Click" Width="140" Height="40" 
+                        Background="#4E73DF" Foreground="White" FontWeight="Bold" BorderThickness="0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

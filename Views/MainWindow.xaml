@@ -1,0 +1,145 @@
+﻿<Window x:Class="test2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Hệ Thống Quản Lý Gara Pro" Height="800" Width="1300"
+        WindowStartupLocation="CenterScreen" FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="SidebarBrush" Color="#1A1D21"/>
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#4E73DF"/>
+
+        <Style x:Key="MenuStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="bd" Padding="15,12" Background="Transparent" Margin="10,2">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource PrimaryBlue}"/>
+                                <Setter TargetName="bd" Property="CornerRadius" Value="8"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#2A2E33"/>
+                                <Setter TargetName="bd" Property="CornerRadius" Value="8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F8F9FC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="🚘" Foreground="White" Margin="0,-5,10,0" FontSize="29"/>
+                <TextBlock Text="GARA AUTO" Foreground="White" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="0,10">
+                <ListBoxItem Style="{StaticResource MenuStyle}" IsSelected="True">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊" Foreground="White"/>
+                        <TextBlock Text="Dashboard" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="👥" Foreground="White"/>
+                        <TextBlock Text="Khách hàng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🚘" Foreground="White"/>
+                        <TextBlock Text="Xe" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🛠️" Foreground="White"/>
+                        <TextBlock Text="Dịch vụ" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📦" Foreground="White"/>
+                        <TextBlock Text="Phụ tùng" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📅" Foreground="White"/>
+                        <TextBlock Text="Đặt lịch" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Style="{StaticResource MenuStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🧾" Foreground="White"/>
+                        <TextBlock Text="Hóa đơn &amp; Thanh toán" Foreground="White" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+
+            <Border Grid.Row="2" Background="#2A2E33" Padding="15" CornerRadius="10" Margin="10,0,10,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Ellipse Width="40" Height="40" Fill="{StaticResource PrimaryBlue}"/>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                        <TextBlock Text="Lead Admin" Foreground="White" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="Quản trị viên" Foreground="#9DA1A7" FontSize="11"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Column="2" Text="⋮" Foreground="White" VerticalAlignment="Center" FontSize="20" Cursor="Hand"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,25">
+                <TextBlock Text="Tổng quan hệ thống" FontSize="28" FontWeight="Bold" Foreground="#333"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Content="🔔" Background="Transparent" BorderThickness="0" FontSize="18" Margin="0,0,15,0"/>
+                    <Button Content="⚙️" Background="Transparent" BorderThickness="0" FontSize="18"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Background="White" CornerRadius="15" BorderBrush="#E3E6F0" BorderThickness="1">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Chào mừng quay trở lại, Lead!" FontSize="24" Foreground="#4E73DF" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Chọn một mục ở menu bên trái để bắt đầu làm việc." Foreground="#858796" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

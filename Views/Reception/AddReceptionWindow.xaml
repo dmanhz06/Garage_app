@@ -1,0 +1,72 @@
+﻿<Window x:Class="test2.Views.Reception.AddReceptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tiếp Nhận Xe" Height="550" Width="480"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Loaded="Window_Loaded">
+
+    <Border Background="White" CornerRadius="15" BorderBrush="#E3E6F0" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="270" Opacity="0.1" ShadowDepth="3"/>
+        </Border.Effect>
+
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,20">
+                <TextBlock Text="TIẾP NHẬN XE SỬA CHỮA" FontSize="22" FontWeight="Bold" Foreground="#4E73DF" HorizontalAlignment="Center"/>
+                <Border Height="3" Width="50" Background="#4E73DF" CornerRadius="2" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="5,0">
+
+                    <TextBlock Text="Khách hàng (Chủ xe)" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <ComboBox x:Name="cmbCustomer" Height="40" VerticalContentAlignment="Center" Padding="12,0" 
+                              BorderBrush="#D1D3E2" BorderThickness="1" Background="White" Margin="0,0,0,15"
+                              DisplayMemberPath="FullName" SelectedValuePath="CustomerID">
+                    </ComboBox>
+
+                    <TextBlock Text="Biển số xe" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <TextBox x:Name="txtBienSo" Height="40" VerticalContentAlignment="Center" Padding="12,0" 
+                             BorderBrush="#D1D3E2" BorderThickness="1" Margin="0,0,0,15" Tag="VD: 51H-123.45"/>
+
+                    <TextBlock Text="Tình trạng xe lúc vào (Vết xước, móp...)" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <TextBox x:Name="txtVehicleCondition" Height="80" TextWrapping="Wrap" AcceptsReturn="True" 
+                             VerticalContentAlignment="Top" Padding="12,10" BorderBrush="#D1D3E2" BorderThickness="1" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Tình trạng phiếu" FontWeight="SemiBold" Margin="0,0,0,5" Foreground="#333"/>
+                    <ComboBox x:Name="cmbTinhTrang" Height="40" VerticalContentAlignment="Center" Padding="12,0" 
+                              BorderBrush="#D1D3E2" BorderThickness="1" Background="White">
+                        <ComboBoxItem Content="Đang chờ" IsSelected="True"/>
+                        <ComboBoxItem Content="Đang sửa"/>
+                    </ComboBox>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Hủy bỏ" Click="btnCancel_Click" Width="100" Height="40" 
+                        Background="Transparent" Foreground="#858796" BorderBrush="#858796" BorderThickness="1" Margin="0,0,15,0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Content="Tạo Phiếu" Click="btnSave_Click" Width="140" Height="40" 
+                        Background="#4E73DF" Foreground="White" FontWeight="Bold" BorderThickness="0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
