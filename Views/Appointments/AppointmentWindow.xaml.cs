@@ -19,6 +19,8 @@ namespace test2.Views.Appointments
 
         public string Note { get; set; }
 
+        
+
         public string AppointmentTimeText
         {
             get { return AppointmentTime.ToString("dd/MM/yyyy HH:mm"); }
@@ -28,6 +30,8 @@ namespace test2.Views.Appointments
     public partial class AppointmentWindow : Window
     {
         private List<AppointmentModel> _allAppointments = new List<AppointmentModel>();
+
+        private DataView? _appointmentView;
 
         public AppointmentWindow()
         {
@@ -52,7 +56,8 @@ namespace test2.Views.Appointments
     ";
 
             DataTable dt = test2.Helpers.DatabaseHelper.ExecuteQuery(sql);
-            AppointmentDataGrid.ItemsSource = dt.DefaultView;
+            _appointmentView = dt.DefaultView;
+            AppointmentDataGrid.ItemsSource = _appointmentView;
         }
 
         /*private void LoadData()
@@ -156,25 +161,28 @@ namespace test2.Views.Appointments
 
         private void txtSearchTime_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string keyword = txtSearchTime.Text.Trim().ToLower();
+            if (_appointmentView == null) return;
+
+            string keyword = txtSearchTime.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(keyword))
             {
-                AppointmentDataGrid.ItemsSource = _allAppointments;
+                _appointmentView.RowFilter = "";
                 return;
             }
 
-            var filtered = _allAppointments.Where(a =>
-                a.AppointmentTimeText.ToLower().Contains(keyword)
-            ).ToList();
+            keyword = keyword.Replace("'", "''");
 
-            AppointmentDataGrid.ItemsSource = filtered;
+            _appointmentView.RowFilter =
+                $"CONVERT(AppointmentTime, 'System.String') LIKE '%{keyword}%'";
         }
 
         private void btnClearSearch_Click(object sender, RoutedEventArgs e)
         {
             txtSearchTime.Text = "";
-            AppointmentDataGrid.ItemsSource = _allAppointments;
+
+            if (_appointmentView != null)
+                _appointmentView.RowFilter = "";
         }
 
         private void MenuSideBar_SelectionChanged(object sender, SelectionChangedEventArgs e)
