@@ -154,7 +154,22 @@ namespace test2.Views.Dashboard
             List<InvoiceModel> filteredInvoices = GetFilteredInvoices();
 
             txtRepairOrders.Text = _repairOrders.Count.ToString();
-            txtCustomers.Text = _repairOrders.Select(x => x.CustomerName).Distinct().Count().ToString();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string customerCountQuery = @"
+        SELECT COUNT(DISTINCT v.CustomerID)
+        FROM RepairOrders ro
+        INNER JOIN Vehicles v ON ro.VehicleID = v.VehicleID
+        WHERE v.CustomerID IS NOT NULL";
+
+                using (SqlCommand cmd = new SqlCommand(customerCountQuery, conn))
+                {
+                    int customerCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    txtCustomers.Text = customerCount.ToString();
+                }
+            }
 
             decimal totalRevenue = filteredInvoices
                 .Where(x => x.Status == "Đã thanh toán")
